@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://s.codepen.io/boomerang/iFrameKey-65c1858d-c125-2aae-0dc8-f6bc205d8322/index.html -->
+<html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js.download"></script><script src="./events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js.download"></script><script src="./css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js.download"></script><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico"><link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111"><link rel="canonical" href="https://codepen.io/sadwhalenoises/pen/zEQEba">
+
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<style class="cp-pen-styles">body{
+  background-color: #666666;
+}
+.container{
+  padding: 100px
+}
+
+#calculator{
+  margin: 0 auto;
+  width: 500px;
+  height: 565px;
+  background-color: #666666;
+  border-style: solid;
+  border-width: 60px;
+  border-color: #CCCCCC;
+}
+#screen{
+  background-color:white;
+  border-style: solid;
+  height: 100px;
+  margin-bottom: 50px;
+  font-size: 23px;
+}
+h6{
+  font-size: 30px;
+}
+button{
+width: 70px;
+  height: 70px;
+  margin: 2px 2px;
+  position: relative;
+  float: right;
+  right: 5px;
+  background-color: #CCCC9A
+  
+}
+
+.equal{
+  width: 218px;
+}</style><style></style></head><body>
+<div class="container">
+  <div id="calculator">
+    <div id="screen">
+      <h6 class="text-right" id="answer">0</h6>
+      <p class="text-right" id="log">0</p>
+    </div>
+    <div id="buttons">
+      <button type="button" class="red" value="ac">AC</button>
+      <button type="button" class="red" value="ce">CE</button>
+      <button type="button" value="7">7</button>
+      <button type="button" value="8">8</button>
+      <button type="button" value="9">9</button>
+      <button type="button" value="/">/</button>
+      <button type="button" value="*">X</button>
+      <button type="button" value="4">4</button>
+      <button type="button" value="5">5</button>
+      <button type="button" value="6">6</button>
+      <button type="button" value="-">-</button>
+      <button type="button" value="+">+</button>
+      <button type="button" value="1">1</button>
+      <button type="button" value="2">2</button>
+      <button type="button" value="3">3</button>
+      <button type="button" class="equal" value="=">=</button>
+      <button type="button" id="dot" value=".">.</button>
+    <button type="button" value="0">0</button>
+    </div>
+      
+      
+      </div>
+      
+    
+  </div>
+  
+  
+  
+  
+  
+  
+  
+
+<script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.download"></script><script src="./jquery.min.js.download"></script>
+<script>$(document).ready(function(){
+ var calc = "";
+ var logCalc = "";
+  var result = "";
+  var operations = ["/, *, -, +"];
+  var reg = /$[0-9]/g;
+  var decimal = true;
+  $('button').click(function(){
+    var value = $(this).attr("value");
+    var log = $('#log');
+    calc += value;
+  $('#answer').text(calc);
+   console.log(calc)
+    if (isNaN(calc[0])){
+      var str = calc.substring(1);
+      $("#answer").text("0");
+      calc = str;
+      
+    }
+    
+   
+    
+    function doAcAndCe(){
+      if (value === "ce"){
+      $("#answer").text("0");
+        $("#dot").val(".");
+      calc = '';
+    }else if(value === "ac"){
+      $("#answer").text("0");
+      $("#log").text("0");
+      $("#dot").val(".");
+      calc ='';
+      logCalc ='';
+    }
+    }
+
+    function checkOperations(){
+      
+       if (value === '+' && calc.indexOf('+') > 0){
+         logCalc += calc;
+         log.text(logCalc);
+         $("#answer").text('0');
+         calc = ''; 
+       }else if(value === '-' && calc.indexOf('-') > 0){
+         logCalc += calc;
+         log.text(logCalc);
+         $("#answer").text('0');
+         calc = '';
+       }else if(value === '/' && calc.indexOf('/') > 0){
+         logCalc += calc;
+         log.text(logCalc);
+         $("#answer").text('0');
+         calc = '';
+       }else if(value === '*' && calc.indexOf('*') > 0){
+         logCalc += calc;
+         log.text(logCalc);
+         $("#answer").text('0');
+         calc = '';
+       }else if (value === '=' && calc !== '' && logCalc !== ''){
+         result = logCalc += calc;
+         var re = eval(logCalc.slice(0,-1));
+         $("#answer").text(re);
+         log.text(result);
+         calc='';
+         logCalc='';
+       console.log(re);
+        
+       }
+       }
+    function checkDecimal(){
+      if (value === '.'){
+        $("#dot").val("");
+      }
+    }
+    checkDecimal();
+    checkOperations();
+    doAcAndCe();
+  })
+  
+  
+  
+  
+  
+})
+//# sourceURL=pen.js
+</script>
+</body></html>

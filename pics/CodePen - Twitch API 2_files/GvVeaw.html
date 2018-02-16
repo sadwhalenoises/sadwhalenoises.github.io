@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://s.codepen.io/sadwhalenoises/fullpage/GvVeaw -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Twitch API 2</title>
+  
+  
+  
+  <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <style>
+      body{
+  background-color: #6441A4 
+}
+
+img{
+  width: 100px;
+}
+
+
+#box{
+  margin: 0 auto;
+}
+
+th, td{
+  text-align: center;
+  padding: 20px;
+
+}
+tr{
+  border-style: solid;
+  border-color: black;
+  padding: 50px;
+}
+.online{
+  background-color: green;
+}
+h1{
+  padding: 50px;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script><style></style>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no">
+
+  
+  <div class="container">
+    <div id="b">
+      <div class="hi">
+      <h1 class="text-center">Twitch API Viewer</h1>
+      </div>
+      <table id="box">
+        
+        
+        
+      <tr class="online"><th><a href="https://www.twitch.tv/esl_sc2"> <img src="./esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg"></a></th><th>esl_sc2</th><th>StarCraft II</th><th>esl_sc2 is Online</th></tr><tr class="online"><th><a href="https://www.twitch.tv/xqcow"> <img src="./xqcow-profile_image-9298dca608632101-300x300.jpeg"></a></th><th>xqcow</th><th>Overwatch</th><th>xqcow is Online</th></tr><tr class="offline"><th><a href="https://www.twitch.tv/tsm_dyrus"> <img src="./tsm_dyrus-profile_image-65fe199f18b9e0ff-300x300.png"></a></th><th>tsm_dyrus</th><th>League of Legends</th><th>tsm_dyrus is Offline</th></tr><tr class="online"><th><a href="https://www.twitch.tv/tsm_viss"> <img src="./15ea6088e14b5a50-profile_image-300x300.png"></a></th><th>tsm_viss</th><th>PLAYERUNKNOWN'S BATTLEGROUNDS</th><th>tsm_viss is Online</th></tr><tr class="offline"><th><a href="https://www.twitch.tv/freecodecamp"> <img src="./freecodecamp-profile_image-d9514f2df0962329-300x300.png"></a></th><th>freecodecamp</th><th>Creative</th><th>freecodecamp is Offline</th></tr><tr class="online"><th><a href="https://www.twitch.tv/day9tv"> <img src="./day9tv-profile_image-2226c4b27aaf487a-300x300.png"></a></th><th>day9tv</th><th>Hearthstone</th><th>day9tv is Online</th></tr><tr class="offline"><th><a href="https://www.twitch.tv/dreamhackhs"> <img src="./a3fa89e412e6ccad-profile_image-300x300.jpeg"></a></th><th>dreamhackhs</th><th>Hearthstone</th><th>dreamhackhs is Offline</th></tr></table>
+      
+      
+      
+    </div>
+    
+    
+  </div>
+  
+  
+  
+  
+
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.download"></script>
+
+  <script src="./jquery.min.js.download"></script>
+
+    <script>
+    
+  var table = $("#box");
+  var streams = ["freecodecamp", "ESL_SC2", "TSM_Dyrus", "Day9tv", "xQcOW", "tsm_viss", "DreamHackHS"];
+  var API = "https://wind-bow.glitch.me/twitch-api/channels/";
+  var API2 = "https://wind-bow.glitch.me/twitch-api/streams/";
+  
+  
+  function loopArray(){
+    streams.forEach(function(stream){
+      function makeAPICall(){
+        $.getJSON(API2 + stream, function(k){
+          $.getJSON(API + stream, function (data){
+            if (k.stream === null){
+              table.append("<tr class = 'offline'>" + "<th>" + "<a href=" + data.url + "> <img src=" + data.logo + "></a>" + "</th>" + "<th>" + data.name + "</th>" + "<th>" + data.game + "</th>" + "<a href=" + data.url + "><th>" + data.name + " is Offline</th></a></tr>")
+            }else{
+              table.append("<tr class = 'online'>" + "<th>" + "<a href=" + data.url + "> <img src=" + data.logo + "></a>" + "</th>" + "<th>" + data.name + "</th>" + "<th>" + data.game + "</th>" + "<th>" + data.name + " is Online</th></tr>")
+            }
+          })
+        })
+      }
+      makeAPICall();
+    })
+  }
+
+loopArray();
+  //# sourceURL=pen.js
+  </script>
+
+  
+  
+
+
+
+ </body></html>

@@ -1,0 +1,70 @@
+body{
+	background-color: #A9B7C0 !important;
+
+}
+.navbar a{
+	color: inherit;
+}
+.navbar a:hover{
+	background-color: #C7D8C6 !important;
+	color: inherit;
+}
+.container{
+	font-family: 'EB Garamond', serif;
+	color: #3C3C3C;
+	font-weight: bold;
+}
+
+.navbar{
+	background-color: #C7D8C6;
+	margin-bottom: 0px !important;
+}
+.img-responsive{
+	margin: 0 auto;
+}
+#cont{
+	float: left;
+}
+.fa{
+	margin: 0 20px;
+}
+
+.btn{
+	margin: 15px 10px;
+	background-color: #EFD9C1;
+}
+#paper{
+	 background: url(http://leblogdecarlos.com/wp-content/uploads/2015/06/Laptop_Pingpong.jpg) no-repeat center center;
+	 width: 100%;
+	 height: 100%;
+}
+.stevenerick{
+	margin-top: 40px;
+	border: 5px solid #EFD9C1;
+
+}
+#contact a{
+	color: inherit;
+	background-color: #C7D8C6;
+}
+#contact a:hover{
+	background-color: 
+}
+#cont{
+	margin-bottom: 30px;
+}
+#work{
+	font-style: italic;
+}
+h1{
+	text-align: center;
+}
+li{
+	font-size: 16px;
+	font-weight: bold;
+}
+p{
+	font-size: 16px;
+}
+
+

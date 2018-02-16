@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://s.codepen.io/sadwhalenoises/fullpage/jLaLmO -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - wiki</title>
+  <link href="./css(1)" rel="stylesheet">
+  
+  
+  <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <style>
+      body{
+  background-color: #5FC1FF
+}
+
+.input-group {
+  margin-left: 40%;
+  margin-top: 2%;
+  margin-bottom: 15px;
+}
+#random{
+  margin-left: 43%;
+  border: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: black;
+  color: #E6E6DC
+}
+#random a{
+  text-decoration: none;
+  color: inherit;
+  
+  
+}
+#result{
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: "Courgette"
+}
+#result a {
+  text-decoration: none;
+  color: inherit;
+  }
+
+#text {
+  border-style: solid;
+  border-color: black;
+  margin-top: 20px;
+  background-color: #81A594;
+  color: #E6E6DC;
+  
+}
+
+
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script><style></style>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no" ng-app="myApp" class="ng-scope">
+
+  
+  <!--making the searchbar-->
+<div ng-controller="simpleController" class="ng-scope">
+  
+ <div class="input-group">
+  <form ng-submit="search()" class="ng-pristine ng-valid">  
+    
+    <input ng-model="searchTxt" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search">
+  </form></div>
+   
+  <span id="random"> <a href="https://en.wikipedia.org/wiki/Special:Random"> Random Article</a></span>
+  <div id="result">
+  </div>
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.download"></script>
+
+  <script src="./angular.min.js.download"></script>
+<script src="./jquery.min.js.download"></script>
+
+    <script>
+    var myApp = angular.module('myApp', []);
+myApp.controller("simpleController", function($scope, $http){
+  
+  $scope.search = function(){
+  var $search = $scope.searchTxt;
+  $.ajax({
+    url: 'https://en.wikipedia.org/w/api.php',
+    dataType: 'jsonp',
+    data:{
+      action: 'opensearch',
+      format: 'json',
+      search: $search,
+    },
+    success: function(data){
+      var $result = $('#result')
+      for (var i = 0; i < data[1].length; i++){if (window.CP.shouldStopExecution(1)){break;}
+        $result.append('<div id="text">' + '<a href=' + data[3][i] + 'target ="_blank">' + '<h1>'  + data[1][i] +'</h1>' + '<p>' + data[2][i] + '</p>' + '</div>');
+      }
+window.CP.exitedLoop(1);
+
+      
+    }
+  })
+  }
+})
+  //# sourceURL=pen.js
+  </script>
+
+  
+  
+
+
+
+ </div></body></html>
